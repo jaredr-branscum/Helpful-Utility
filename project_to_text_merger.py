@@ -10,14 +10,13 @@ def combine_files(directory=".", output_filename="combined_files.txt", ignore_li
     try:
         with open(output_filename, "w", encoding="utf-8") as outfile:
             for root, dirs, files in os.walk(directory):
-                # Modify dirs in-place to prune subdirectories
-                dirs[:] = [d for d in dirs if d not in ignore_list]  # Key change for recursive ignore
+                dirs[:] = [d for d in dirs if d not in ignore_list]  # Recursive directory ignore
 
                 for item in files:
                     filepath = os.path.join(root, item)
 
-                    if item == os.path.basename(__file__) or item == output_filename:
-                        continue  # Ignore script and output file
+                    if any(ignored in filepath for ignored in ignore_list) or item == os.path.basename(__file__) or item == output_filename:
+                        continue
 
                     try:
                         with open(filepath, "r", encoding="utf-8") as infile:
