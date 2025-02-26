@@ -13,8 +13,11 @@ This Python utility script combines the contents of all files within a specified
 
 1. Save the Python script (e.g., `project_to_text_merger.py`).
 2. Ensure you have Python 3 installed.
+3. Configure the files and directories you want to ignore in exclusions.ini
+4. Add each exclusion on a newline
 
 ## Usage
 
 ```bash
-python project_to_text_merger.py [directory] [options]
+python project_to_text_merger.py //runs with default configuration
+python project_to_text_merger.py --input [directory] --output [output file] --config [exclusions file]
